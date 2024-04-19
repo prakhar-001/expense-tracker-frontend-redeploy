@@ -111,7 +111,8 @@ const logoutHandler = async () => {
                      </Link>
                      <div onClick={() => {setIsOpen(false)}}  className='flex justify-between items-center'>
                       <p>Theme</p>
-                      <ToggleTheme/></div>
+                      {/* <ToggleTheme/> */}
+                      </div>
                      <Link href={"/logIn-email-pass"}><button onClick={logoutHandler} className='flex items-center'>Logout <IoIosLogOut className="font-bold text-xl ml-2"/></button></Link>
                  </div>
                 </dialog>
