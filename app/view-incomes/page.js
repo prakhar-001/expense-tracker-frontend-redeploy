@@ -122,7 +122,7 @@ const handleSubmitIncome = async (e) => {
   <LoggedInUserComponent>
     <div className="flex flex-col items-center justify-between px-2 sm:px-12 pb-5 w-full h-max ">
       <div  className="flex justify-between flex-wrap w-full mb-5 text-base sm:text-2xl font-semibold">
-        <div className="flex gap-2 sm:gap-5 items-center justify-between text-white w-full sm:w-7/12">
+        <div className="flex gap-2 sm:gap-5 items-center justify-between dark:text-white w-full sm:w-7/12">
           <div className='flex gap-2 items-center'>
             <h1>Incomes</h1>
             <button onClick={() => setRefreshIncomes(!refreshIncomes)}><SlRefresh className="hover:text-3xl active:animate-ping"/></button>

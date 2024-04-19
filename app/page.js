@@ -125,7 +125,7 @@ const handleSubmitExpense = async (e) => {
     {/* ADD Container */}
     <div className="w-full h-full sm:w-1/3 flex flex-col gap-2">
       {/* Buttons */}
-      <h1 className='text-2xl font-bold text-white mx-auto mb-2'>DashBoard</h1>
+      <h1 className='text-2xl font-bold dark:text-white mx-auto mb-2'>DashBoard</h1>
       <div className="w-full flex justify-around">
         <button onClick={() => {
           setAddIncomeOpen(!addIncomeOpen) 

@@ -131,7 +131,7 @@ const type = "Expense"
 
       {/* HEADER */}
       <div className="flex justify-between flex-wrap w-full mb-5 text-base sm:text-2xl font-semibold">
-        <div className="flex gap-2 sm:gap-5 items-center text-white justify-between w-full sm:w-7/12">
+        <div className="flex gap-2 sm:gap-5 items-center dark:text-white justify-between w-full sm:w-7/12">
           <div className='flex gap-2 items-center'>
             <h1>Expenses</h1>
             <button onClick={() => setRefreshExpenses(!refreshExpenses)}><SlRefresh className="hover:text-3xl active:animate-ping"/></button>

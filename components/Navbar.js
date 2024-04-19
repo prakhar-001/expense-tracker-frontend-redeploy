@@ -14,6 +14,7 @@ import { FaMoneyBillTransfer } from "react-icons/fa6";
 import { FaUser} from "react-icons/fa";
 import { FaUserCircle } from "react-icons/fa";
 import { IoStatsChart } from "react-icons/io5";
+import ToggleTheme from './ToggleTheme';
 
 const Navbar = () => {
 
@@ -66,7 +67,7 @@ const logoutHandler = async () => {
 
 
   return (
-    <div className="navbar flex flex-row items-center justify-between px-2 sm:px-10 p-4 sm:p-3 bg-slate-900 text-white h-[8vh]">
+    <div className="navbar flex flex-row items-center justify-between px-2 sm:px-10 p-4 sm:p-3 bg-green-400 dark:bg-slate-900 dark:text-white h-[8vh]">
 
       <Link href={"/"}>
         <div className="flex items-center gap-3">
@@ -101,7 +102,7 @@ const logoutHandler = async () => {
             <div className='flex items-center gap-2'>
               {/* <p className='hidden sm:flex'>Profile</p> */}
               <button onClick={() => {setIsOpen((prev) => !prev)}} className='ml-2 sm:text-base text-xl'><FaUser/></button>
-              <dialog open={isOpen} className=' absolute top-10 mt-2 mr-5 p-3 w-40 h-36 sm:h-32 border-4 rounded-lg border-slate-300 bg-slate-800 text-white'>
+              <dialog open={isOpen} className=' absolute top-10 mt-2 mr-5 p-3 w-40 h-36 sm:h-32 border-4 rounded-lg border-slate-300 dark:bg-slate-800 dark:text-white'>
                  <div className='flex flex-col justify-between h-full w-full'>
                      
                      <Link onClick={() => {setIsOpen(false)}} href={'/profile'} className='flex gap-5 items-center'>
@@ -110,6 +111,7 @@ const logoutHandler = async () => {
                      </Link>
                      <div onClick={() => {setIsOpen(false)}}  className='flex justify-between items-center'>
                       <p>Theme</p>
+                      <ToggleTheme/>
                       </div>
                      <Link href={"/logIn-email-pass"}><button onClick={logoutHandler} className='flex items-center'>Logout <IoIosLogOut className="font-bold text-xl ml-2"/></button></Link>
                  </div>
