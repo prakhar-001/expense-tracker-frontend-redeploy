@@ -97,7 +97,7 @@ const page = () => {
         </div>
         <button onClick={() => setAddCategoryOpen(!addCategoryOpen)} className="sm:hidden flex items-center gap-3 bg-green-400 p-1 px-3 rounded-xl text-base">Add <FaPlus /></button>
         <div className="text-base flex justify-between gap-2 mx-0 w-auto sm:w-max sm:mx-0">
-              <select value={selectedType} onChange={(e) => setSelectedType(e.target.value)} className='rounded-xl px-2'>
+              <select value={selectedType} onChange={(e) => setSelectedType(e.target.value)} className='rounded-xl px-2 border-2 border-green-400 dark:border-slate-900'>
                 <option value="all" >All Categories</option>
                 <option value="Income">Incomes</option>
                 <option value="Expense">Expenses</option> 

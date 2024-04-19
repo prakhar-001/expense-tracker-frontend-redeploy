@@ -134,18 +134,18 @@ const type = "Expense"
         <div className="flex gap-2 sm:gap-5 items-center dark:text-white justify-between w-full sm:w-7/12">
           <div className='flex gap-2 items-center'>
             <h1>Expenses</h1>
-            <button onClick={() => setRefreshExpenses(!refreshExpenses)}><SlRefresh className="hover:text-3xl active:animate-ping"/></button>
+            <button onClick={() => setRefreshExpenses(!refreshExpenses)}><SlRefresh className="sm:hover:text-3xl active:animate-spin"/></button>
           </div>
           <h1 className='dark:text-white'>Total Expense : {totalExpense}</h1>
-          <button onClick={() => setAddOpen(!addOpen)} className="sm:hidden flex items-center gap-3 bg-green-400 p-1 px-3 rounded-xl text-sm dark:text-black">Add <FaPlus /></button>
+          <button onClick={() => setAddOpen(!addOpen)} className="sm:hidden flex items-center gap-3 bg-green-400 dark:bg-white p-1 px-3 rounded-xl text-sm dark:text-black">Add <FaPlus /></button>
         </div>
         <div className="text-base flex justify-between gap-2 mx-0 w-full sm:w-max sm:mx-0 mt-2 sm:mt-0">
-            <select value={selectedMode} onChange={(e) => setSelectedMode(e.target.value)} className='rounded-xl px-2'>
+            <select value={selectedMode} onChange={(e) => setSelectedMode(e.target.value)} className='rounded-xl px-2 border-2 border-green-400 dark:border-slate-900'>
                 <option value="all">All Mode</option>
                 <option value="Cash">Cash</option>
                 <option value="Online">Online</option>
             </select>
-            <select value={selectedMonth} onChange={(e) => setSelectedMonth(e.target.value)} className='rounded-xl px-2'>
+            <select value={selectedMonth} onChange={(e) => setSelectedMonth(e.target.value)} className='rounded-xl px-2 border-2 border-green-400 dark:border-slate-900'>
                 <option value="all">All Months</option>
                 <option value="01">Jan</option>
                 <option value="02">Feb</option>
@@ -163,14 +163,14 @@ const type = "Expense"
                  <option key={month} value={month}>{month}</option>
                 ))} */}
             </select>
-            <select value={selectedYear} onChange={(e) => setSelectedYear(e.target.value)} className='rounded-xl px-2'>
+            <select value={selectedYear} onChange={(e) => setSelectedYear(e.target.value)} className='rounded-xl px-2 border-2 border-green-400 dark:border-slate-900'>
                 {/* <option value="2024">2024</option> */}
                 {Array.from({ length: 5 }, (_, i) => 2022 + i).map((year) => (
                  <option key={year} value={year}>{year}</option>
                 ))}
             </select>
             
-            <button onClick={() => setDetails(!details)} className="sm:hidden flex items-center gap-3 bg-green-400 p-1 px-3 rounded-xl"><FcViewDetails className="text-xl"/></button>
+            <button onClick={() => setDetails(!details)} className="sm:hidden flex items-center gap-3 bg-green-400 dark:bg-white p-1 px-3 rounded-xl"><FcViewDetails className="text-xl "/></button>
         </div>
       </div>
                 
