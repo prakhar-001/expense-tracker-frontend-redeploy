@@ -11,7 +11,6 @@ import { IoIosLogOut } from "react-icons/io";
 import { GiReceiveMoney } from "react-icons/gi";
 import { FaMoneyBillTrendUp } from "react-icons/fa6";
 import { FaMoneyBillTransfer } from "react-icons/fa6";
-import ToggleTheme from './ToggleTheme';
 import { FaUser} from "react-icons/fa";
 import { FaUserCircle } from "react-icons/fa";
 import { IoStatsChart } from "react-icons/io5";
@@ -111,7 +110,6 @@ const logoutHandler = async () => {
                      </Link>
                      <div onClick={() => {setIsOpen(false)}}  className='flex justify-between items-center'>
                       <p>Theme</p>
-                      {/* <ToggleTheme/> */}
                       </div>
                      <Link href={"/logIn-email-pass"}><button onClick={logoutHandler} className='flex items-center'>Logout <IoIosLogOut className="font-bold text-xl ml-2"/></button></Link>
                  </div>
