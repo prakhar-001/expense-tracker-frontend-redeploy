@@ -91,7 +91,7 @@ const page = () => {
     <div className="flex flex-col items-center sm:justify-between px-2 sm:px-12 pb-5 w-full h-full">
 
        <div className="flex justify-between items-center flex-wrap w-full mb-5 text-lg sm:text-2xl font-semibold">
-        <div className="flex gap-2 sm:gap-5 items-center dark:text-white">
+        <div className="flex gap-2 sm:gap-5 items-center text-white">
           <h1>Your Profile</h1>
           <button onClick={() => setRefreshCategories(!refreshCategories)}><SlRefresh className="hover:text-3xl active:animate-ping"/></button>
         </div>

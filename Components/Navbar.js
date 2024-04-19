@@ -67,7 +67,7 @@ const logoutHandler = async () => {
 
 
   return (
-    <div className="flex flex-row items-center justify-between px-2 sm:px-10 p-4 sm:p-3 bg-green-400 dark:bg-slate-900 dark:text-white h-[8vh]">
+    <div className="flex flex-row items-center justify-between px-2 sm:px-10 p-4 sm:p-3 bg-slate-900 text-white h-[8vh]">
 
       <Link href={"/"}>
         <div className="flex items-center gap-3">
@@ -102,7 +102,7 @@ const logoutHandler = async () => {
             <div className='flex items-center gap-2'>
               {/* <p className='hidden sm:flex'>Profile</p> */}
               <button onClick={() => {setIsOpen((prev) => !prev)}} className='ml-2 sm:text-base text-xl'><FaUser/></button>
-              <dialog open={isOpen} className=' absolute top-10 mt-2 mr-5 p-3 w-40 h-36 sm:h-32 border-4 rounded-lg border-slate-300 dark:bg-slate-900 dark:text-white'>
+              <dialog open={isOpen} className=' absolute top-10 mt-2 mr-5 p-3 w-40 h-36 sm:h-32 border-4 rounded-lg border-slate-300 bg-slate-800 text-white'>
                  <div className='flex flex-col justify-between h-full w-full'>
                      
                      <Link onClick={() => {setIsOpen(false)}} href={'/profile'} className='flex gap-5 items-center'>
