@@ -6,8 +6,8 @@ const CustomerLayout = ({children}) => {
   return (
     <>
     <div className='flex flex-col bg-medium h-max w-screen'> 
-      <div className='fixed w-full h-full '>
-        <div className='mx-0 h-full'>
+      <div className='fixed w-full '>
+        <div className='mx-0'>
           <Navbar/>
         </div>
       </div>
