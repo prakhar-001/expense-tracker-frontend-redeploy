@@ -2,7 +2,7 @@
 // import { Inter } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "react-hot-toast";
-import Navbar from "@/components/Navbar";
+// import Navbar from "@/components/Navbar";
 import { Provider } from "react-redux";
 import { store } from "../redux/store.js";
 
