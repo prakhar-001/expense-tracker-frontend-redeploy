@@ -1,113 +1,273 @@
-import Image from "next/image";
+"use client"
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import toast from 'react-hot-toast';
+import UserLayout from "../Components/User-Layout.js";
+import LoggedInUserComponent from "../Components/Logged-In-User-Only-Layout.js";
+import { useSelector } from "react-redux";
+
 
 export default function Home() {
+  const {user, loading} = useSelector(state => state.userReducer)
+  const userId = user?._id;
+
+  const [addIncomeOpen, setAddIncomeOpen] = useState(false)
+  const [addExpenseOpen, setAddExpenseOpen] = useState(false)
+  const [categoriesDataIncome, setCategoriesDataIncome] = useState([])
+  const [categoriesDataExpense, setCategoriesDataExpense] = useState([])
+
+  // console.log(addIncomeOpen)
+  
+  const [incomeData, setIncomeData] = useState({
+    title: '',
+    amount: '',
+    mode: '',
+    user: userId,
+    description: '',
+    date: '',
+    category: ''
+  });
+  const [expenseData, setExpenseData] = useState({
+    title: '',
+    amount: '',
+    user: userId,
+    description: '',
+    date: '',
+    category: ''
+  });
+
+ const handleChangeIncome = (e) => {
+    setIncomeData({
+      ...incomeData,
+      [e.target.name]: e.target.value
+    });
+  };
+ const handleChangeExpense = (e) => {
+    setExpenseData({
+      ...expenseData,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  const typeIncome = "Income"
+  const typeExpense = "Expense"
+  useEffect(() => {
+    fetchCategoriesIncome(userId, typeIncome);
+    fetchCategoriesExpense(userId, typeExpense);
+  }, []);
+
+  const fetchCategoriesIncome = async (userId, type) => {
+    try {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_VITE_SERVER}/api/v1/category/get?id=${userId}&type=${type}`); // Assuming this is your API endpoint for fetching expenses
+      if (!response.ok) {
+        throw new Error('Failed to fetch expenses');
+      }
+      // console.log(response)
+      const data = await response.json();
+      // console.log(data)
+      // console.log(data.expenses)
+      setCategoriesDataIncome(data.categories);
+    } catch (error) {
+      console.error('Error fetching expenses:', error);
+  }
+  }
+  const fetchCategoriesExpense = async (userId, type) => {
+    try {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_VITE_SERVER}/api/v1/category/get?id=${userId}&type=${type}`); // Assuming this is your API endpoint for fetching expenses
+      if (!response.ok) {
+        throw new Error('Failed to fetch expenses');
+      }
+      // console.log(response)
+      const data = await response.json();
+      // console.log(data)
+      // console.log(data.expenses)
+      setCategoriesDataExpense(data.categories);
+    } catch (error) {
+      console.error('Error fetching expenses:', error);
+  }
+  }
+
+const handleSubmitIncome = async (e) => {
+  e.preventDefault();
+  setAddExpenseOpen(false)
+  try {
+    const response = await axios.post(`${process.env.NEXT_PUBLIC_VITE_SERVER}/api/v1/transaction/add-income`, incomeData);
+    // console.log(response.data);
+    toast.success(response.data.message)
+    // Handle success, e.g., show a success message or reset the form
+  } catch (error) {
+    // console.error(error);
+    toast.error(error.response.data.message)
+    // Handle error, e.g., show an error message
+  }
+};
+const handleSubmitExpense = async (e) => {
+  e.preventDefault();
+  try {
+    console.log(expenseData)
+    const response = await axios.post(`${process.env.NEXT_PUBLIC_VITE_SERVER}/api/v1/transaction/add-expense`, expenseData);
+    // console.log(response.data);
+    toast.success(response.data.message)
+    // Handle success, e.g., show a success message or reset the form
+  } catch (error) {
+    // console.error(error);
+    toast.error(error.response.data.message)
+    // Handle error, e.g., show an error message
+  }
+};
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">app/page.js</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <UserLayout>
+    <LoggedInUserComponent>
+    <main className="flex flex-col sm:flex-row justify-between sm:pt-5 pb-24 gap-2 sm:gap-5 h-screen sm:h-[90vh] w-auto mx-2 sm:mx-20 sm:px-2 ">
+
+
+    {/* ADD Container */}
+    <div className="w-full h-full sm:w-1/3 flex flex-col gap-2">
+      {/* Buttons */}
+      <h1 className='text-2xl font-bold dark:text-white mx-auto mb-2'>DashBoard</h1>
+      <div className="w-full flex justify-around">
+        <button onClick={() => {
+          setAddIncomeOpen(!addIncomeOpen) 
+          setAddExpenseOpen(false)}} className="bg-slate-400 p-3 rounded-xl w-32">
+          <h1>Add Income</h1>
+        </button>
+        <button onClick={() => {
+          setAddExpenseOpen(!addExpenseOpen)
+          setAddIncomeOpen(false)
+          }} className="bg-slate-400 p-3 rounded-xl w-32">
+          <h1>Add Expense</h1>
+        </button>
+      </div>
+
+      {/* INCOME */}
+      <div className="flex flex-col items-center w-full">  
+        {
+          addIncomeOpen && 
+          <div className="flex flex-col items-center border-2 w-full h-max bg-gray-400 rounded-xl p-5">        
+            <h1 className="font-semibold">Add Income</h1>
+            <form onSubmit={handleSubmitIncome} className="flex flex-col w-full px-5">
+              <div className="my-1 flex w-full flex-col">
+              <label htmlFor="title">Title</label>
+              <input type="text" name="title" value={incomeData.title} onChange={handleChangeIncome} className="rounded-md p-1"/>
+              </div>
+              <div className="my-1 flex w-full flex-col">
+                <label htmlFor="amount">Amount</label>                
+                <input type="number" name="amount" value={incomeData.amount} onChange={handleChangeIncome}  className="rounded-md p-1"/>
+              </div>
+              <div className="my-1 flex w-full flex-col">
+                <label htmlFor="description">Description</label>
+                <textarea name="description" value={incomeData.description} onChange={handleChangeIncome}  className="rounded-md p-1"/>
+              </div>
+              <div className="my-1 flex w-full flex-col">
+                <label htmlFor="date">Date</label>
+                <input type="date" name="date" value={incomeData.date} onChange={handleChangeIncome} className="rounded-md p-1"/>
+              </div>
+
+              <div className="my-1 flex w-full flex-col">
+              <label htmlFor="category">Category</label>
+              <select name="category" value={incomeData.category} onChange={handleChangeIncome} className="rounded-md p-1">
+                <option value="Other">Other</option>
+                <option value="Salary">Salary</option>
+                <option value="Loan">Loan</option>
+                {
+                  categoriesDataIncome.map((i) => (
+                    <option value={i.title} key={i._id}>{i.title}</option>
+                  ))
+                }
+                </select>
+              </div>
+
+              <div className="my-1 flex w-full flex-col">
+                  <label htmlFor="Mode">Mode of Payment</label>
+                  <div className="flex gap-5">
+                    <label>
+                      <input
+                        type="radio"  name="mode"  value="Cash"  checked={incomeData.mode === "Cash"}  onChange={handleChangeIncome}  className="mr-2"
+                      />
+                      Cash
+                    </label>
+                    <label>
+                      <input
+                        type="radio"  name="mode"  value="Online"  checked={incomeData.mode === "Online"}  onChange={handleChangeIncome} className="mr-2"/>
+                      Online
+                    </label>
+                  </div>
+              </div>
+
+              <button type="submit" className="p-2 w-40 mx-auto rounded-xl bg-green-300 mt-2">Add Income</button>            
+          </form>
         </div>
+        }
+
+        {/* EXPENSE */}
+        {
+          addExpenseOpen && 
+          <div className="flex flex-col items-center border-2 w-full h-max bg-gray-400 rounded-xl p-5">
+            <h1 className="font-semibold">Add Expense</h1>
+            <form onSubmit={handleSubmitExpense} className="flex flex-col w-full px-5">
+              <div className="my-1 flex w-full flex-col">
+                <label htmlFor="title">Title</label>
+                <input type="text" name="title" value={expenseData.title} onChange={handleChangeExpense} className="rounded-md p-1"/>
+              </div>
+              <div className="my-1 flex w-full flex-col">
+                <label htmlFor="amount">Amount</label>
+                <input type="number" name="amount" value={expenseData.amount} onChange={handleChangeExpense} className="rounded-md p-1"/>
+              </div>
+              <div className="my-1 flex w-full flex-col">
+                <label htmlFor="description">Description</label>
+                <textarea name="description" value={expenseData.description} onChange={handleChangeExpense} className="rounded-md p-1"/>
+              </div>
+              <div className="my-1 flex w-full flex-col">
+                <label htmlFor="date">Date</label>
+                <input type="date" name="date" value={expenseData.date} onChange={handleChangeExpense} className="rounded-md p-1"/>
+              </div>
+
+              <div className="my-1 flex w-full flex-col">
+              <label htmlFor="category">Category</label>
+              <select name="category" value={expenseData.category} onChange={handleChangeExpense} className="rounded-md p-1">
+                <option value="Other">Other</option>
+                <option value="Shopping">Shopping</option>
+                <option value="Gaming">Gaming</option>
+                {/* <option value="">Expense 3 A</option> */}
+                {
+                  categoriesDataExpense.map((i) => (
+                    <option value={i.title} key={i._id}>{i.title}</option>
+                  ))
+                }
+              </select>
+              </div>
+              <div className="my-1 flex w-full flex-col">
+                  <label htmlFor="Mode">Mode of Payment</label>
+                  <div className="flex gap-5">
+                    <label>
+                      <input
+                        type="radio"  name="mode"  value="Cash"  checked={expenseData.mode === "Cash"}  onChange={handleChangeExpense}  className="mr-2"
+                      />
+                      Cash
+                    </label>
+                    <label>
+                      <input
+                        type="radio"  name="mode"  value="Online"  checked={expenseData.mode === "Online"}  onChange={handleChangeExpense} className="mr-2"/>
+                      Online
+                    </label>
+                  </div>
+              </div>
+
+              <button type="submit" className="p-2 w-40 mx-auto rounded-xl bg-green-300 mt-2">Add Expense</button>
+            </form>
+        </div>
+        }
       </div>
-
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-full sm:before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full sm:after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px] z-[-1]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800 hover:dark:bg-opacity-30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Explore starter templates for Next.js.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50 text-balance`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
+    </div>
+    <div className="bg-green-300 w-full h-full border-2 border-red-500">
+      hii
+    </div>
+     
+      
     </main>
+    </LoggedInUserComponent>
+    </UserLayout>
+
   );
 }
