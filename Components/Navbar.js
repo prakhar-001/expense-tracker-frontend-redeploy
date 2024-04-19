@@ -66,7 +66,7 @@ const logoutHandler = async () => {
 
 
   return (
-    <div className="flex flex-row items-center justify-between px-2 sm:px-10 p-4 sm:p-3 bg-slate-900 text-white h-[8vh]">
+    <div className="navbar flex flex-row items-center justify-between px-2 sm:px-10 p-4 sm:p-3 bg-slate-900 text-white h-[8vh]">
 
       <Link href={"/"}>
         <div className="flex items-center gap-3">
