@@ -87,7 +87,7 @@ const page = () => {
    };
   return (
     <UserLayout>
-    {/* <LoggedInUserComponent> */}
+    <LoggedInUserComponent>
     <div className="flex flex-col items-center sm:justify-between px-2 sm:px-12 pb-5 w-full h-full">
 
        <div className="flex justify-between items-center flex-wrap w-full mb-5 text-lg sm:text-2xl font-semibold">
@@ -191,7 +191,7 @@ const page = () => {
       </div>
 
     </div>
-    {/* </LoggedInUserComponent> */}
+    </LoggedInUserComponent>
     </UserLayout>
   )
 }

@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import toast from 'react-hot-toast';
-import UserLayout from "../components/User-Layout.js";
+import UserLayout from "@/components/User-Layout.js";
 import LoggedInUserComponent from "../components/Logged-In-User-Only-Layout.js";
 import { useSelector } from "react-redux";
 
