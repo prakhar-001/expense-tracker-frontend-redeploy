@@ -1,6 +1,6 @@
 import React from 'react'
-import UserLayout from "@/Components/User-Layout.js"
-import LoggedInUserComponent from "@/Components/Logged-In-User-Only-Layout.js"
+import UserLayout from "@/components/User-Layout.js"
+import LoggedInUserComponent from "@/components/Logged-In-User-Only-Layout.js"
 
 const page = () => {
   return (

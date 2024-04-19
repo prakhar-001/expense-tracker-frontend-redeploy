@@ -2,9 +2,9 @@
 import React, { useState, useEffect } from 'react';
 import toast from 'react-hot-toast';
 import axios from 'axios'; // Ensure axios is imported at the top
-import UserLayout from "@/Components/User-Layout.js"
+import UserLayout from "@/components/User-Layout.js"
 import { useSelector } from "react-redux";
-import LoggedInUserComponent from "@/Components/Logged-In-User-Only-Layout.js"
+import LoggedInUserComponent from "@/components/Logged-In-User-Only-Layout.js"
 import { SlRefresh } from "react-icons/sl";
 import { MdDelete } from "react-icons/md";
 import { FaPlus } from "react-icons/fa";
