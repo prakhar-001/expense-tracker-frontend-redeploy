@@ -11,9 +11,4 @@ html,body {
     -ms-overflow-style: none;  
     scrollbar-width: none;  
     overflow-x: hidden;
-    /* background-color: rgb(19, 19, 19); */
-}
-.navbar{
-    /* background-color: rgb(9, 12, 12); */
-    height: 10vh;
 }
