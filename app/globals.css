@@ -4,14 +4,15 @@
 
 body::-webkit-scrollbar {
     display: none;
-    background-color: rgb(38, 32, 46);
+    
 }
 /* Hide scrollbar for IE, Edge and Firefox */
 html,body {
     -ms-overflow-style: none;  
     scrollbar-width: none;  
     overflow-x: hidden;
+    background-color: rgb(38, 32, 46);
 }
-navbar{
+.navbar{
     background-color: rgb(22, 77, 77);
 }
