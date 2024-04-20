@@ -5,6 +5,8 @@ import Link from 'next/link';
 import { auth } from "@/firebase.js";
 import toast from "react-hot-toast";
 import axios from 'axios';
+import NotLoggedInUserLayout from "@/components/Not-Logged-In-User-Only-Layout.js";
+import UserLayout from "@/components/User-Layout.js"
 
 
 const page = () => {
@@ -21,12 +23,13 @@ const page = () => {
     const createUserDB = async (userData) => {
         // e.preventDefault();
         // setAddExpenseOpen(false)
-        console.log(userData)
+        // console.log("createuserDB function running")
+        // console.log(userData)
         try {
-          const response = await axios.post('${process.env.NEXT_PUBLIC_VITE_SERVER}/api/v1/user/new', userData);
+          const response = await axios.post(`${process.env.NEXT_PUBLIC_VITE_SERVER}/api/v1/user/new`, userData);
           toast.success(response.data.message)
         } catch (error) {
-          console.log(error)
+        //   console.log(error)
         //   toast.error("Error aagya")
           toast.error(error.response.data.message)
         }
@@ -41,7 +44,7 @@ const page = () => {
                 signInWithEmailAndPassword(auth, email, password).then(
                     userDetail = auth.currentUser,
                     // console.log(auth.currentUser),                    
-                    toast.success("User Created in FireBase"),
+                    // toast.success("User Created in FireBase"),
                 );
                 createUserDB({
                     name:name,
@@ -62,6 +65,8 @@ const page = () => {
     }
   return (
     <>
+    <UserLayout>
+    <NotLoggedInUserLayout>
     <div className='flex items-center flex-col justify-center mt-5 sm:mt-28 mx-auto border-2 shadow-2xl mb-20 rounded-xl w-11/12 sm:w-2/5 p-5 bg-gray-400'>
             <h1 className='text-xl font-semibold'>Create Account</h1>
             <form action="" onSubmit={submitHandler} className='w-5/6 sm:w-9/12 flex flex-col gap-5 items-center mb-8'>
@@ -108,14 +113,16 @@ const page = () => {
             </form>
             <div className='flex gap-5'> 
                 <div><button className='p-2 w-32 mb-1 border-2 hover:shadow-slate-400 rounded-xl shadow-xl '><Link href={"/logIn-email-pass"}>Log In</Link></button></div>
-                {
-                    userValue?
+                {/* {
+                    userValue? */}
                     <div><button className='p-2 w-32 border-2 hover:shadow-green-300 rounded-xl shadow-xl'><Link href={"/"} className='flex items-center justify-center gap-2'><p>Track Now! </p></Link></button></div>
-                    :
+                    {/* :
                     <div><button className='p-2 w-32 border-2 hover:shadow-red-300 shadow-xl rounded-xl' ><Link href={"/"} className='flex items-center justify-center gap-2'><p>Track Now! </p></Link></button></div>
-                }
+                } */}
             </div>
         </div>
+    </NotLoggedInUserLayout>
+    </UserLayout>
     </>
   )
 }

@@ -129,13 +129,13 @@ const handleSubmitExpense = async (e) => {
       <div className="w-full flex justify-around">
         <button onClick={() => {
           setAddIncomeOpen(!addIncomeOpen) 
-          setAddExpenseOpen(false)}} className="bg-slate-400 p-3 rounded-xl w-32">
+          setAddExpenseOpen(false)}} className="bg-green-300 dark:bg-slate-900 dark:text-white p-3 rounded-xl w-32">
           <h1>Add Income</h1>
         </button>
         <button onClick={() => {
           setAddExpenseOpen(!addExpenseOpen)
           setAddIncomeOpen(false)
-          }} className="bg-slate-400 p-3 rounded-xl w-32">
+          }} className="bg-green-300 dark:bg-slate-900 dark:text-white p-3 rounded-xl w-32">
           <h1>Add Expense</h1>
         </button>
       </div>

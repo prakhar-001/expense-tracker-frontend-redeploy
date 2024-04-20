@@ -166,7 +166,7 @@ const handleSubmitIncome = async (e) => {
 
       <div className="flex flex-col sm:flex-row justify-between w-full h-full">
         {/* INCOME Form for Pc Website*/}
-        <div className="pc-form sm:flex flex-col items-center justify-around border-2 w-full sm:w-1/3 bg-gray-400 rounded-xl p-5 hidden h-[78.15vh] overflow-y-auto">        
+        <div className="pc-form sm:flex flex-col items-center justify-around border-2 w-full sm:w-1/3 bg-slate-200 dark:bg-gray-400 rounded-xl p-5 hidden h-[78.15vh]">        
             <h1 className="font-semibold text-xl">Add Income</h1>
             <form onSubmit={handleSubmitIncome} className="flex flex-col w-full px-5">
               <div className="my-1 flex w-full flex-col">
@@ -179,7 +179,8 @@ const handleSubmitIncome = async (e) => {
               </div>
               <div className="my-1 flex w-full flex-col">
                 <label htmlFor="description">Description</label>
-                <textarea name="description" value={incomeData.description} onChange={handleChangeIncome} className="rounded-md p-1"/>
+                <textarea name="description" value={incomeData.description} onChange={handleChangeIncome} className="rounded-md p-1"
+                style={{ resize: 'none', height: '70px', width:'auto' }}/>
               </div>
               <div className="my-1 flex w-full flex-col">
                 <label htmlFor="date">Date</label>
@@ -216,7 +217,7 @@ const handleSubmitIncome = async (e) => {
                   </div>
               </div>
 
-              <button type="submit" className="p-2 w-40 mx-auto rounded-xl bg-green-300 mt-8">Add Income</button>            
+              <button type="submit" className="p-2 w-40 mx-auto rounded-xl bg-green-300 dark:bg-slate-800 dark:text-white mt-3 font-semibold">Add Income</button>            
           </form>
         </div>
 
@@ -249,6 +250,11 @@ const handleSubmitIncome = async (e) => {
                 <option value="Other">Other</option>
                 <option value="Salary">Salary</option>
                 <option value="Loan">Loan</option>
+                {
+                  categoriesData.map((i) => (
+                    <option value={i.title} key={i._id}>{i.title}</option>
+                  ))
+                }
                 </select>
               </div>
               <div className="my-1 flex w-full flex-col">
@@ -276,20 +282,36 @@ const handleSubmitIncome = async (e) => {
 
         {/* INCOMES TABLE FOR PC*/}
         <div className="w-full sm:pl-5 h-max hidden sm:flex">
-          <table className="table-auto w-full border h-full bg-gray-400 p-10 overflow-x-scroll ">
-            <thead className="w-full">
-              <tr>
-                <th className="px-4 py-2 w-2/12">Title</th>
-                <th className="px-4 py-2 w-1/12">Amount</th>
-                <th className="px-4 py-2 w-2/12">Category</th>
-                <th className="px-4 py-2 w-1/12">Mode</th>
-                <th className="px-4 py-2 w-1/12">Date</th>
-                <th className="px-4 py-2 w-3/12">Description</th>
-                <th className="px-4 py-2 w-1/12">Edit</th>
-                <th className="px-4 py-2 w-1/12">Delete</th>
-              </tr>
-            </thead>
+          <table className="table-auto w-full border-2 h-full bg-slate-200 dark:bg-gray-400 p-10 overflow-x-scroll ">
+          {
+              incomeData.length > 0 && (
+              <thead className="w-full ">
+                <tr className="">
+                  <th className="px-4 py-2 w-2/12">Title</th>
+                  <th className="px-4 py-2 w-1/12">Amount</th>
+                  <th className="px-4 py-2 w-2/12">Category</th>
+                  <th className="px-4 py-2 w-1/12">Mode</th>
+                  <th className="px-4 py-2 w-1/12">Date</th>
+                  <th className="px-4 py-2 w-3/12">Description</th>
+                  <th className="px-4 py-2 w-1/12">Edit</th>
+                  <th className="px-4 py-2 w-1/12">Delete</th>
+                </tr>
+              </thead>
+              )
+            }
             <tbody>
+              {
+                incomesData.length === 0 && (
+                  <tr>
+                    <td>
+                      <div className='text-4xl font-semibold flex items-center justify-center my-24 gap-5'>
+                        Track Your Income 
+                        <p className='dark:text-white text-green-500'>Add Now!!!</p>
+                      </div>
+                    </td>
+                  </tr>
+                )
+              }
               {incomesData.map((income) => (
                 <tr key={income._id}>
                   {/* <td className="border px-4 py-2">{income._id}</td> */}
@@ -324,13 +346,16 @@ const handleSubmitIncome = async (e) => {
                 <th className="px-4 py-2 w-1/12">Date</th>
                 {
                   details && (
-                    <th className="px-4 py-2 w-3/12">Description</th>
+                    <th className="px-16 py-2 w-3/12">Description</th>
                 )}
                 {
                   details && (
                     <th className="px-4 py-2 w-1/12">Edit</th>
                 )}
-                <th className="px-6 py-2 w-10 text-xl "><MdDelete/></th>
+                {
+                  details && (
+                    <th className="px-6 py-2 w-10 text-xl "><MdDelete/></th>
+                )}
               </tr>
             </thead>
             <tbody>
@@ -344,18 +369,20 @@ const handleSubmitIncome = async (e) => {
                   </td>
                   <td className="border px-4 py-2 w-2/12">{income.category}</td>
                   <td className="border px-4 py-2 w-1/12">{income.mode}</td>
-                  <td className="border px-4 py-2 w-1/12">
+                  <td className="border px-2 py-2 w-1/12">
                     <div className="flex justify-center">{new Date(income.date).toLocaleDateString()}</div>
                   </td>
                   {details && (
-                    <td className="border px-4 py-2 w-3/12">{income.description}</td>
+                    <td className="border px-2 py-2 w-3/12">{income.description}</td>
                   )}
                   
                   {details && (
                     <td className="border px-4 py-2 w-1/12"><div className="flex justify-center">Edit</div></td>
                   )}
+                  {details && (
+                    <td className="border px-6 py-2 w-10"><button onClick={() => deleteHandler(income._id)}><div className="text-xl"><MdDelete className="hover:text-red-600 hover:text-2xl"/></div></button></td>
+                  )}
                   
-                  <td className="border px-6 py-2 w-10"><button onClick={() => deleteHandler(income._id)}><div className="text-xl"><MdDelete className="hover:text-red-600 hover:text-2xl"/></div></button></td>
                   {/* Add more data cells as needed */}
                 </tr>
               ))}

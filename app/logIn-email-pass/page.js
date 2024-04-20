@@ -5,6 +5,8 @@ import { auth } from "@/firebase.js";
 import toast from "react-hot-toast";
 import Link from 'next/link';
 // import { redirect } from 'next/navigation';
+import NotLoggedInUserLayout from "@/components/Not-Logged-In-User-Only-Layout.js";
+import UserLayout from "@/components/User-Layout.js"
 
 
 
@@ -34,6 +36,8 @@ const page = () => {
     }
   return (
     <>
+    <UserLayout>
+    <NotLoggedInUserLayout>
     <div className='flex items-center flex-col justify-center mt-20 sm:mt-32 mx-auto border-2 shadow-2xl mb-20 rounded-xl w-11/12 sm:w-2/5 p-5 bg-gray-400'>
             <h1 className='text-xl font-semibold'>Login Now</h1>
             <form action="" onSubmit={submitHandler} className='w-5/6 sm:w-9/12 flex flex-col gap-5 items-center mb-8'>
@@ -71,14 +75,16 @@ const page = () => {
             </form>
             <div className='flex gap-5'> 
                 <div><button className='p-2 w-32 mb-1 border-2 hover:shadow-slate-400 rounded-xl shadow-xl '><Link href={"/signIn-email-pass"}>Sign Up</Link></button></div>
-                {
-                    userValue?
-                    <div><button className='p-2 w-32 border-2 hover:shadow-green-300 shadow-xl rounded-xl'><Link href={"/"} className='flex items-center justify-center gap-2'><p>Track Now! </p></Link></button></div>
-                    :
+                {/* {
+                    userValue? */}
+                    <div className='p-2 w-32 border-2 hover:shadow-green-300 shadow-xl rounded-xl'><Link href={"/"} className='flex items-center justify-center gap-2'><p>Track Now! </p></Link></div>
+                    {/* :
                     <div><button className='p-2 w-32 border-2 hover:shadow-red-300 shadow-xl rounded-xl' ><Link href={"/"} className='flex items-center justify-center gap-2'><p>Track Now! </p></Link></button></div>
-                }
+                } */}
             </div>
-        </div>
+        </div>     
+    </NotLoggedInUserLayout>
+    </UserLayout>
     </>
   )
 }
