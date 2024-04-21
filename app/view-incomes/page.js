@@ -274,7 +274,7 @@ const handleSubmitIncome = async (e) => {
                   </div>
               </div>
 
-              <button type="submit" className="p-2 w-40 mx-auto rounded-xl bg-green-300 mt-2">Add Income</button>            
+              <button type="submit" className="p-2 w-40 mx-auto rounded-xl bg-green-300 dark:bg-slate-800 dark:text-white mt-2">Add Income</button>            
           </form>
         </div>
           )

@@ -12,7 +12,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       {/* <body className={inter.className}> */}
-      <body>
+      <body className="dark:bg-slate-700">
         <Provider store={store}>
           {/* <div className="h-full "> */}
             {/* <Navbar/> */}

@@ -22,7 +22,7 @@ const LoggedInCustomerOnlyLayout = ({children}) => {
     }
     useLayoutEffect(() => {
         const session = sessionStatus;
-        console.log(session)
+        // console.log(session)
         if (!session) {
         redirect("/logIn-email-pass")
         }

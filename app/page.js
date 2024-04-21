@@ -123,7 +123,7 @@ const handleSubmitExpense = async (e) => {
 
 
     {/* ADD Container */}
-    <div className="w-full h-full sm:w-1/3 flex flex-col gap-2">
+    <div className="w-full h-auto sm:w-1/3 flex flex-col gap-2">
       {/* Buttons */}
       <h1 className='text-2xl font-bold dark:text-white mx-auto mb-2'>DashBoard</h1>
       <div className="w-full flex justify-around">
@@ -142,6 +142,7 @@ const handleSubmitExpense = async (e) => {
 
       {/* INCOME */}
       <div className="flex flex-col items-center w-full">  
+        {/* INCOME */}
         {
           addIncomeOpen && 
           <div className="flex flex-col items-center border-2 w-full h-max bg-gray-400 rounded-xl p-5">        
@@ -195,7 +196,7 @@ const handleSubmitExpense = async (e) => {
                   </div>
               </div>
 
-              <button type="submit" className="p-2 w-40 mx-auto rounded-xl bg-green-300 mt-2">Add Income</button>            
+              <button type="submit" className="p-2 w-40 mx-auto rounded-xl bg-green-300 dark:bg-slate-800 dark:text-white mt-2">Add Income</button>            
           </form>
         </div>
         }
@@ -254,13 +255,13 @@ const handleSubmitExpense = async (e) => {
                   </div>
               </div>
 
-              <button type="submit" className="p-2 w-40 mx-auto rounded-xl bg-green-300 mt-2">Add Expense</button>
+              <button type="submit" className="p-2 w-40 mx-auto rounded-xl bg-green-300 dark:bg-slate-800 dark:text-white mt-2">Add Expense</button>
             </form>
         </div>
         }
       </div>
     </div>
-    <div className="bg-green-300 w-full h-full border-2 border-red-500">
+    <div className="bg-slate-200 dark:bg-gray-400 w-full h-full border-2 border-red-500">
       hii
     </div>
      
