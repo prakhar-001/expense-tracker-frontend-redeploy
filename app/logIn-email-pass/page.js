@@ -25,7 +25,7 @@ const page = () => {
         e.preventDefault();
             
         signInWithEmailAndPassword(auth, email, password).then((userExist) => {
-            toast.success("Existing User Logged In Successfully")
+            toast.success("User Logged In Successfully")
             setUserValue(true)
             // console.log(userExist)
             // redirect("/");
@@ -38,7 +38,7 @@ const page = () => {
     <>
     <UserLayout>
     <NotLoggedInUserLayout>
-    <div className='flex items-center flex-col justify-center mt-20 sm:mt-32 mx-auto border-2 shadow-2xl mb-20 rounded-xl w-11/12 sm:w-2/5 p-5 bg-gray-400'>
+    <div className='flex items-center flex-col justify-center mt-20 sm:mt-24 mx-auto border-2 shadow-2xl mb-32 rounded-xl w-11/12 sm:w-2/5 p-6 pb-7 bg-gray-400'>
             <h1 className='text-xl font-semibold'>Login Now</h1>
             <form action="" onSubmit={submitHandler} className='w-5/6 sm:w-9/12 flex flex-col gap-5 items-center mb-8'>
                 
@@ -74,10 +74,16 @@ const page = () => {
                 }
             </form>
             <div className='flex gap-5'> 
-                <div><button className='p-2 w-32 mb-1 border-2 hover:shadow-slate-400 rounded-xl shadow-xl '><Link href={"/signIn-email-pass"}>Sign Up</Link></button></div>
+                <Link href={"/signIn-email-pass"}>
+                    <div>
+                        <button className='p-2 w-32 mb-1 border-2 hover:shadow-slate-400 rounded-xl shadow-xl '>Sign Up</button>
+                    </div>
+                </Link>
                 {/* {
                     userValue? */}
-                    <div className='p-2 w-32 border-2 hover:shadow-green-300 shadow-xl rounded-xl'><Link href={"/"} className='flex items-center justify-center gap-2'><p>Track Now! </p></Link></div>
+                    <Link href={"/"} className='flex items-center justify-center gap-2'>
+                        <div className='p-2 px-5 w-32 border-2 hover:shadow-green-300 shadow-xl rounded-xl'>Track Now!</div>
+                    </Link>
                     {/* :
                     <div><button className='p-2 w-32 border-2 hover:shadow-red-300 shadow-xl rounded-xl' ><Link href={"/"} className='flex items-center justify-center gap-2'><p>Track Now! </p></Link></button></div>
                 } */}

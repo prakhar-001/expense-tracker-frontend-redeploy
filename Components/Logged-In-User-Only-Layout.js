@@ -22,10 +22,11 @@ const LoggedInCustomerOnlyLayout = ({children}) => {
     }
     useLayoutEffect(() => {
         const session = sessionStatus;
+        console.log(session)
         if (!session) {
         redirect("/logIn-email-pass")
         }
-    }, []);
+    }, [abc]);
 
     return (
         // <div className='text-5xl font-semibold mx-auto'>Login To Access This Page</div>

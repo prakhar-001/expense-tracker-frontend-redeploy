@@ -15,8 +15,10 @@ const LoggedInCustomerOnlyLayout = ({children}) => {
     } else {
         sessionStatus = false;
     }
+    // console.log("ABC" + abc)
     useLayoutEffect(() => {
         const session = sessionStatus;
+        // console.log(session)
         if (session) {
             // router.push("/")
         redirect("/")

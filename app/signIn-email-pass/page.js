@@ -67,7 +67,7 @@ const page = () => {
     <>
     <UserLayout>
     <NotLoggedInUserLayout>
-    <div className='flex items-center flex-col justify-center mt-5 sm:mt-28 mx-auto border-2 shadow-2xl mb-20 rounded-xl w-11/12 sm:w-2/5 p-5 bg-gray-400'>
+    <div className='flex items-center flex-col justify-center mt-10 sm:mt-16 mx-auto border-2 shadow-2xl mb-24 rounded-xl w-11/12 sm:w-2/5 p-5 bg-gray-400'>
             <h1 className='text-xl font-semibold'>Create Account</h1>
             <form action="" onSubmit={submitHandler} className='w-5/6 sm:w-9/12 flex flex-col gap-5 items-center mb-8'>
                 
@@ -112,7 +112,11 @@ const page = () => {
                 }
             </form>
             <div className='flex gap-5'> 
-                <div><button className='p-2 w-32 mb-1 border-2 hover:shadow-slate-400 rounded-xl shadow-xl '><Link href={"/logIn-email-pass"}>Log In</Link></button></div>
+                <Link href={"/logIn-email-pass"}>
+                    <div>
+                        <button className='p-2 w-32 mb-1 border-2 hover:shadow-slate-400 rounded-xl shadow-xl '>Log In</button>
+                    </div>
+                </Link>
                 {/* {
                     userValue? */}
                     <div><button className='p-2 w-32 border-2 hover:shadow-green-300 rounded-xl shadow-xl'><Link href={"/"} className='flex items-center justify-center gap-2'><p>Track Now! </p></Link></button></div>

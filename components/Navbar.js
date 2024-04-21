@@ -15,13 +15,14 @@ import { FaUser} from "react-icons/fa";
 import { FaUserCircle } from "react-icons/fa";
 import { IoStatsChart } from "react-icons/io5";
 import ToggleTheme from './ToggleTheme';
+import { TbLogin } from "react-icons/tb";
+import { BsFillSignIntersectionFill } from "react-icons/bs";
 
 const Navbar = () => {
 
   const dispatch = useDispatch();
   const {user, loading} = useSelector((state) => state.userReducer)
   const [isOpen, setIsOpen] = useState(false)
-
 
   useEffect(() => {
     onAuthStateChanged(auth, async (user) => {
@@ -69,32 +70,40 @@ const logoutHandler = async () => {
   return (
     <div className="navbar flex flex-row items-center justify-between px-2 sm:px-10 p-4 sm:p-3 bg-green-400 dark:bg-slate-900 dark:text-white h-[8vh]">
 
-      <Link href={"/"}>
-        <div className="flex items-center gap-3">
-          <div className="hidden sm:block">Dashboard</div>
-          <div className="text-2xl sm:text-xl sm:pb-1"><IoStatsChart /></div>
-        </div>
-      </Link>
-      <Link href={"/view-incomes"}>
-        <div className="flex items-center gap-3">
-          <div className="hidden sm:block">Incomes</div>
-          <div className="text-2xl sm:text-xl sm:pb-1"><GiReceiveMoney /></div>
-        </div>
-      </Link>
+    {
+      user? 
+      <div className='flex flex-row w-4/5 justify-between items-center'>
+        <Link href={"/"} onClick={() => {setIsOpen(false)}}>
+          <div className="flex items-center gap-3">
+            <div className="hidden sm:block">Dashboard</div>
+            <div className="text-2xl sm:text-xl sm:pb-1"><IoStatsChart /></div>
+          </div>
+        </Link>
+        <Link href={"/view-incomes"} onClick={() => {setIsOpen(false)}}>
+          <div className="flex items-center gap-3">
+            <div className="hidden sm:block">Incomes</div>
+            <div className="text-2xl sm:text-xl sm:pb-1"><GiReceiveMoney /></div>
+          </div>
+        </Link>
 
-      <Link href={"/view-expenses"} >
-        <div className="flex items-center gap-3">
-          <div className="hidden sm:block">Expenses</div>
-          <div className="text-2xl sm:text-lg sm:pb-1"><FaMoneyBillTrendUp /></div>
-        </div>
-      </Link>
+        <Link href={"/view-expenses"} onClick={() => {setIsOpen(false)}}>
+          <div className="flex items-center gap-3">
+            <div className="hidden sm:block">Expenses</div>
+            <div className="text-2xl sm:text-lg sm:pb-1"><FaMoneyBillTrendUp /></div>
+          </div>
+        </Link>
 
-      <Link href={"/transactions"}>
-        <div className="flex items-center gap-3">
-          <div className="hidden sm:block">Transactions</div>
-          <div className="text-2xl sm:text-lg"><FaMoneyBillTransfer /></div>
-        </div>
-      </Link>
+        <Link href={"/transactions"} onClick={() => {setIsOpen(false)}}>
+          <div className="flex items-center gap-3">
+            <div className="hidden sm:block">Transactions</div>
+            <div className="text-2xl sm:text-lg"><FaMoneyBillTransfer /></div>
+          </div>
+        </Link>
+      </div>
+      :
+      <div></div>
+    }
+      
 
       {
           user&& ( 
@@ -117,7 +126,27 @@ const logoutHandler = async () => {
                  </div>
                 </dialog>
             </div>
-      )}        
+      )}     
+
+      {
+        !user && (
+          <div className='flex items-center w-full justify-between sm:justify-end gap-10 mx-2'>
+            <Link href={"/logIn-email-pass"}>
+              <div className="flex items-center gap-3">
+                <div className="block">Login</div>
+                <div className="text-2xl sm:text-lg"><TbLogin /></div>
+              </div>
+            </Link>
+            <Link href={"/signIn-email-pass"}>
+              <div className="flex items-center gap-3">
+                <div className="block">SignIn</div>
+                <div className="text-2xl sm:text-lg"><BsFillSignIntersectionFill /></div>
+              </div>
+            </Link>
+            <ToggleTheme/>
+          </div>
+        )
+      }   
     </div>
   )
 }
