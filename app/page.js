@@ -261,7 +261,7 @@ const handleSubmitExpense = async (e) => {
         }
       </div>
     </div>
-    <div className="bg-slate-200 dark:bg-gray-400 w-full h-full border-2 border-red-500">
+    <div className="bg-slate-200 dark:bg-gray-400 w-full h-full border-2">
       hii
     </div>
      
