@@ -1,6 +1,6 @@
 {
-    "name": "PWA App",
-    "short_name": "PWA",
+    "name": "Expense Tracker App",
+    "short_name": "Expense Tracker",
     "scope": "/",
     "icons": [
       {
@@ -22,8 +22,8 @@
         "purpose": "maskable any"
       }
     ],
-    "theme_color": "#2196f3",
-    "background_color": "#2196f3",
+    "theme_color": "#334155",
+    "background_color": "#334155",
     "start_url": "/",
     "display": "standalone",
     "orientation": "portrait"
