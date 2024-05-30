@@ -41,7 +41,21 @@ const Page = () => {
 });
 const type = "Expense"
 
-// console.log(refreshExpenses)
+
+// Inside a React component or a function
+  // const generatePdf = async () => {
+  //   const url = 'http://localhost:3000/api/pdf?url=https://example.com';
+  //   const response = await fetch(url);
+  //   const blob = await response.blob();
+  //   const link = document.createElement('a');
+  //   link.href = URL.createObjectURL(blob);
+  //   link.download = 'download.pdf';
+  //   link.click();
+  //  };
+  //  useEffect(()=> {
+  //   generatePdf() 
+  //  }, [])
+
   useEffect(() => {
     fetchExpenses(userId, selectedMonth, selectedYear, selectedMode);
   }, [refreshExpenses, selectedMonth, selectedYear, selectedMode]);

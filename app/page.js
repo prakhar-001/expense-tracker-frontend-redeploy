@@ -5,6 +5,7 @@ import toast from 'react-hot-toast';
 import UserLayout from "@/components/User-Layout.js";
 import LoggedInUserComponent from "../components/Logged-In-User-Only-Layout.js";
 import { useSelector } from "react-redux";
+import ProviderWrapper from "@/components/provider.js";
 
 
 export default function Home() {
@@ -117,6 +118,9 @@ const handleSubmitExpense = async (e) => {
 };
 
   return (
+
+    // <ProviderWrapper> 
+
     <UserLayout>
     <LoggedInUserComponent>
     <main className="flex flex-col sm:flex-row justify-between sm:pt-5 pb-24 gap-2 sm:gap-5 h-screen sm:h-[90vh] w-auto mx-2 sm:mx-20 sm:px-2 ">
@@ -270,5 +274,6 @@ const handleSubmitExpense = async (e) => {
     </LoggedInUserComponent>
     </UserLayout>
 
+    
   );
 }
