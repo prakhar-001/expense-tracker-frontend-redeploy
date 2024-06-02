@@ -362,6 +362,8 @@ const type = "Expense"
         {/* EXPENSES TABLE  FOR PHONE*/}
         <div className="w-full sm:pl-5 h-full overflow-x-scroll flex sm:hidden">
           <table className="table-auto w-full border-2 h-full bg-gray-400 p-10 ">
+          {
+            expensesData.length > 0 && (
             <thead className="w-full">
               <tr className="w-full">
                 {
@@ -386,7 +388,21 @@ const type = "Expense"
                   )}
               </tr>
             </thead>
+             )
+            }
             <tbody>
+              {
+                expensesData.length === 0 && (
+                  <tr>
+                    <td>
+                      <div className='text-4xl font-semibold flex items-center justify-center my-24 gap-5'>
+                        Track Your Expenses 
+                        <p className='dark:text-white text-green-500'>Add Now!!!</p>
+                      </div>
+                    </td>
+                  </tr>
+                )
+              }
               {expensesData.map((expense) => (
                 <tr key={expense._id} className="h-[7vh]">
                   {details && (

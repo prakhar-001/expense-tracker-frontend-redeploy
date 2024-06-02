@@ -345,6 +345,8 @@ const handleSubmitIncome = async (e) => {
         {/* INCOMES TABLE FOR Phone*/}
         <div className="w-full sm:pl-5 overflow-x-scroll flex sm:hidden">
           <table className="table-auto w-full border h-full bg-gray-400 p-10">
+          {
+            incomesData.length > 0 && (
             <thead className="w-full">
               <tr className="">
                 {
@@ -369,7 +371,21 @@ const handleSubmitIncome = async (e) => {
                 )}
               </tr>
             </thead>
+             )
+            }
             <tbody>
+              {
+                incomesData.length === 0 && (
+                  <tr>
+                    <td>
+                      <div className='text-4xl font-semibold flex items-center justify-center my-24 gap-5'>
+                        Track Your Income 
+                        <p className='dark:text-white text-green-500'>Add Now!!!</p>
+                      </div>
+                    </td>
+                  </tr>
+                )
+              }
               {incomesData.map((income) => (
                 <tr key={income._id} className="h-[7vh]">
                   {details && (
