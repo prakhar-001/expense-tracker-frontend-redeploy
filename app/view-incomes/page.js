@@ -19,9 +19,9 @@ const Page = () => {
  const [incomesData, setIncomesData] = useState([]);
  const [totalIncome, setTotalIncome] = useState(0);
  const [refreshIncomes, setRefreshIncomes] = useState(true)
- const [selectedMonth, setSelectedMonth] = useState("all");
+ const [selectedMonth, setSelectedMonth] = useState(getCurrentMonth());
  const [selectedMode, setSelectedMode] = useState("all");
- const [selectedYear, setSelectedYear] = useState("2024");
+ const [selectedYear, setSelectedYear] = useState(getCurrentYear());
  const [addOpen, setAddOpen] = useState(false)
  const [details, setDetails] = useState(false)
  const [categoriesData, setCategoriesData] = useState([])
@@ -32,11 +32,22 @@ const Page = () => {
   amount: '',
   mode: '',
   user: userId,
-  description: '',
+  description: '.',
   date: '',
   category: ''
 });
 const type = "Income"
+
+function getCurrentMonth() {
+  const today = new Date(); // Get the current date
+  const month = today.getMonth() + 1; // Add 1 because getMonth() is zero-based
+  return month;
+}
+function getCurrentYear() {
+  var now = new Date();
+  return now.getFullYear();
+}
+// console.log(getCurrentYear());
 
  useEffect(() => {
     fetchIncomes(userId, selectedMonth, selectedYear, selectedMode);
@@ -138,15 +149,15 @@ const handleSubmitIncome = async (e) => {
             </select>
             <select value={selectedMonth} onChange={(e) => setSelectedMonth(e.target.value)} className='rounded-xl px-2 border-2 border-green-400 dark:border-slate-900'>
                 <option value="all">All Months</option>
-                <option value="01">Jan</option>
-                <option value="02">Feb</option>
-                <option value="03">March</option>
-                <option value="04">April</option>
-                <option value="05">May</option>
-                <option value="06">June</option>
-                <option value="07">July</option>
-                <option value="08">Aug</option>
-                <option value="09">Sep</option>
+                <option value="1">Jan</option>
+                <option value="2">Feb</option>
+                <option value="3">March</option>
+                <option value="4">April</option>
+                <option value="5">May</option>
+                <option value="6">June</option>
+                <option value="7">July</option>
+                <option value="8">Aug</option>
+                <option value="9">Sep</option>
                 <option value="10">Oct</option>
                 <option value="11">Nov</option>
                 <option value="12">Dec</option>
