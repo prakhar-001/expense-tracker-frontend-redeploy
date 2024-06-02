@@ -284,7 +284,7 @@ const handleSubmitIncome = async (e) => {
         <div className="w-full sm:pl-5 h-max hidden sm:flex">
           <table className="table-auto w-full border-2 h-full bg-slate-200 dark:bg-gray-400 p-10 overflow-x-scroll ">
           {
-              incomeData.length > 0 && (
+              incomesData.length > 0 && (
               <thead className="w-full ">
                 <tr className="">
                   <th className="px-4 py-2 w-2/12">Title</th>

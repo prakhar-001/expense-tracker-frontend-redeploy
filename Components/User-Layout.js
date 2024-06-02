@@ -11,7 +11,7 @@ const CustomerLayout = ({children}) => {
           <Navbar/>
         </div>
       </div>
-      <div className='mt-20 sm:mt-18 h-full '>{children}</div>
+      <div className='mt-20 sm:mt-18 h-full'>{children}</div>
     </div>
     </>
   )

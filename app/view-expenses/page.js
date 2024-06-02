@@ -30,6 +30,7 @@ const Page = () => {
  const [categoriesData, setCategoriesData] = useState([])
 //  console.log(addOpen)
 
+// console.log(expensesData)
  const [expenseData, setExpenseData] = useState({
   title: '',
   amount: '',
@@ -40,6 +41,7 @@ const Page = () => {
   category: ''
 });
 const type = "Expense"
+
 
 
 // Inside a React component or a function
