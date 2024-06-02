@@ -395,7 +395,7 @@ const type = "Expense"
                 expensesData.length === 0 && (
                   <tr>
                     <td>
-                      <div className='text-4xl font-semibold flex items-center justify-center my-24 gap-5'>
+                      <div className='text-4xl font-semibold flex flex-col sm:flex-row items-center justify-center my-24 gap-5'>
                         Track Your Expenses 
                         <p className='dark:text-white text-green-500'>Add Now!!!</p>
                       </div>
