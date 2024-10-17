@@ -14,6 +14,7 @@ import { LineChart } from '@mui/x-charts/LineChart';
 import { Line } from "react-chartjs-2";
 import { Doughnut } from 'react-chartjs-2';
 import { Chart as ChartJS, LineElement, CategoryScale, LinearScale, PointElement, Tooltip, ArcElement, Legend } from "chart.js";
+import { useTheme } from '@emotion/react';
 ChartJS.register(LineElement, CategoryScale, LinearScale, PointElement, Tooltip)
 ChartJS.register(ArcElement, Tooltip, Legend)
 
@@ -263,6 +264,12 @@ const handleSubmitExpense = async (e) => {
   }
 };
 
+const [theme, setTheme] = useState("")
+useEffect(() => {
+  const Usertheme = localStorage.getItem("theme")
+  setTheme(Usertheme);
+  console.log(Usertheme)
+}, [])
 
 
 // Graphs and Charts
@@ -271,7 +278,7 @@ const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', '
 const lineDataExpense = {
   labels: months,
   datasets: [{
-    labels: "Expenses of the month",
+    label: "Expenses of the month",
     data: monthlyExpenses,
     borderColor: "rgb(252, 57, 23)",
     backgroundColor: "white",
@@ -286,7 +293,7 @@ const lineDataExpense = {
 const lineDataIncome = {
   labels: months,
   datasets: [{
-    labels: "Expenses of the month",
+    label: "Expenses of the month",
     data: monthlyIncomes,
     borderColor: "rgb(0,225,71)",
     backgroundColor: "white",
@@ -305,15 +312,14 @@ const lineOptions = {
   scales: {
     x: {
       ticks: {
-        color: "white"
+        color: theme === 'light' ? 'black' : 'white'
       }
     },
     y: {
       min: 0,
       autoScale: true,
       ticks: {
-        color: 'white', // Change this to the desired color for the Y-axis text
-      },
+        color: theme === 'light' ? 'black' : 'white'      },
     }
   }
   
@@ -357,15 +363,13 @@ const combineLineOptions = {
   scales: {
     x: {
       ticks: {
-        color: "white"
-      }
+        color: theme === 'light' ? 'black' : 'white'}
     },
     y: {
       min: 0,
       autoScale: true,
       ticks: {
-        color: 'white',
-      },
+        color: theme === 'light' ? 'black' : 'white'},
     }
   }
 }

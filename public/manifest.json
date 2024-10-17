@@ -1,4 +1,5 @@
 {
+    "id":"1",
     "name": "Expense Tracker App",
     "short_name": "Expense Tracker",
     "scope": "/",
