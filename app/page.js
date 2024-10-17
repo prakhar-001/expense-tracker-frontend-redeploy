@@ -364,7 +364,7 @@ const combineLineOptions = {
     x: {
       ticks: {
         color: theme === 'light' ? 'black' : 'white'}
-        // trying
+        // trying bibiu iubuib
     },
     y: {
       min: 0,
